@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<html>
+  <head>
+        <style>
+      #perfil-top {
+        display: none !important;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los Cifuentes</title>
+      <link rel="stylesheet" href="../../estilos/estilo.css">
+      <link rel="icon" type="image/png" href="../../favicon.png">
+      <script src="../../scripts/proteger.js"></script>
+        <meta charset="UTF-8">
+    <script src="../../recursos/fotosdeperfiles.js"></script>
+          <script src="../../scripts/botonera.js"></script>
+          <script src="../../scripts/sesiones.js"></script>
+          <script>
+        let meloinvento = localStorage.getItem("tunombre");
+
+        if (meloinvento && meloinvento !== "null" && meloinvento.trim() !== "") {
+            document.getElementById("bienvenido").innerHTML = "Bienvenido " + meloinvento;
+        } else {
+            document.getElementById("perfil")?.remove();
+            localStorage.removeItem("tunombre");
+        }
+        </script>
+  </head>
+  <body>
+    <p class="deco">H U R F H B D S U J I F F J W</p>
+    <h2 class="cabecera" id="carpetanombre">Carpeta ciudadana</h2> 
+    <br>
+    <div style="display:block; margin: auto; text-align: center;">
+    <a href="calendario.html">
+    <button class="boton">Mi calendario</button>
+    </a><br>
+    <a href="opinion.html">
+    <button class="boton">Opinión ciudadana</button>
+    </a><br>
+    <a href="test-zamarro.html">
+    <button class="boton">Test del zamarro</button>
+    </a><br>
+    <a href="derechos.html">
+    <button class="boton">Sus derechos</button>
+    </a><br>
+    </div>
+    <br>
+    <hr>
+            <h2 class="cabecera">Su certificado digital</h2> 
+             <section id="perfil-page">
+              <p id="nombre-de-perfil-page">Pon tu nombre</p>
+
+              <div id="contenido-perfil-page">
+                  <img id="foto-de-perfil-page" src="../../recursos/fotos-de-perfil/defecto.png">
+
+                  <p id="biografia-page">Pon tu biografia</p>
+              </div>
+              <p id="numerin" style="display: none;"></p>
+            </section>
+            <br>
+            <p id="aviso-dni" class="eslogan">Completa el certificado y podrás descargarlo<br>(pon nombre, foto y biografia)</p>
+            <button class="boton" id="downloads1" onclick="descargarDNI()" style="display:none; margin:auto; text-align:center; color:lime;">>> DESCARGAR CERTIFICADO <<</button>
+            <br>
+            <button class="boton" style="display:block; margin: auto; margin-bottom: 0px;" onclick="camnombre()">Cambiar nombre</button>
+            <button class="boton" style="display:block; margin: auto; margin-bottom: 0px;" onclick="cambio()">Editar biografía</button>
+            <div class="botones-perfil">
+            <h2 class="eslogan" style="width:90%;">Cambiar foto de perfil</h2>
+            <p class="eslogan" id="mostrar-tufoto"></p>
+            <button style="font-size: 40px;" class="boton" onclick="restar()"><-</button>
+            <button style="font-size: 40px;" class="boton" onclick="sumar()">-></button>
+            <br><br>
+            </div>
+            <br>
+            <br>
+            <p class="deco">H U R F H B D S U J I F F J W</p>
+            <hr><br>
+      <script src="../../scripts/excelentisimoadmin.js"></script>
+      <script>
+            if (localStorage.getItem("tufoto"))
+            {
+            document.getElementById("foto-de-perfil-page").src = localStorage.getItem("fotopuesta")
+            }
+            else
+            {
+              if (localStorage.getItem("fotourl"))
+              {
+                document.getElementById("foto-de-perfil-page").src = localStorage.getItem("fotopuesta");
+              }
+            }
+            if (localStorage.getItem("tunombre"))
+            {
+            document.getElementById("nombre-de-perfil-page").innerHTML = localStorage.getItem("tunombre");
+            clasificarNumerin();
+            }
+            if (localStorage.getItem("biografia"))
+            {
+            document.getElementById("biografia-page").innerHTML = localStorage.getItem("biografia");
+            }
+      </script>
+
+      <script>
+        window.addEventListener('load', function() {
+          const elemento = document.getElementById('perfil-top');
+          if (elemento) {
+            elemento.remove();
+          }
+        });
+        if (localStorage.getItem("tunombre"))
+        {
+          if (localStorage.getItem("excelentisimo"))
+          {
+          document.getElementById("carpetanombre").innerHTML = "Bienvenido a su carpeta, <span style='color: rgb(207, 107, 238);'>" + meloinvento + "<span>";
+          }
+          else
+          {
+          document.getElementById("carpetanombre").innerHTML = "Bienvenido a su carpeta, <span style='color: green;'>" + meloinvento + "<span>";
+          }
+          if (localStorage.getItem("biografia"))
+          {
+            if (localStorage.getItem("fotopuesta"))
+            {
+            document.getElementById("downloads1").style.display = "block";
+            document.getElementById("aviso-dni").style.display = "none";
+            document.getElementById("numerin").style.removeProperty("display");
+            }
+          }
+        }
+      </script>
+
+      <script>
+        if(localStorage.getItem("tufoto"))
+      {
+        document.getElementById("mostrar-tufoto").innerHTML = localStorage.getItem("tufoto") + "/" + tope;
+      }
+      </script>
+
+  </body>
+
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulador parlamentario</title>
+</head>
+<body>
+
+<svg id="grafico" viewBox="0 0 580 305" width="100%" xmlns="http://www.w3.org/2000/svg">
+  <g id="asientos"></g>
+  <g id="etiquetas"></g>
+  <line x1="290" y1="28" x2="290" y2="218" stroke="#777" stroke-dasharray="5 5"/>
+  <text id="texto-mayoria" x="290" y="266" text-anchor="middle" font-size="12">Mayoría absoluta: 7 de 13</text>
+  <text id="texto-escrutado" x="290" y="286" text-anchor="middle" font-size="12" fill="#444">Escrutado: 0%</text>
+</svg>
+
+<script>
+// ================= CONFIGURACIÓN POR DEFECTO =================
+let permitirTeclado = false;
+let totalDiputados = 13;
+let votosEmitidos = 0;
+
+let configPartidos = [
+  { nombre: "CSYC", color: "#0756a5", tecla: "C", votos: 0 },
+  { nombre: "PALC", color: "#8e44ad", tecla: "P", votos: 0 },
+  { nombre: "HDP",  color: "#e30613", tecla: "H", votos: 0 }
+];
+// =============================================================
+
+let partidos = {};
+let teclas = {};
+let orden = [];
+let seleccionado = null;
+let asientos = [];
+let historialTeclas = "";
+
+const centroX = 290;
+const centroY = 218;
+const radioExterior = 165;
+const radioInterior = 105;
+
+function punto(radio, angulo) {
+  const radianes = angulo * Math.PI / 180;
+  return {
+    x: centroX + radio * Math.cos(radianes),
+    y: centroY - radio * Math.sin(radianes)
+  };
+}
+
+function obtenerTotalVotosActuales() {
+  let suma = 0;
+  for (const nombre in partidos) {
+    suma += partidos[nombre].votos;
+  }
+  return suma;
+}
+
+function calcularPorcentajeEscrutado() {
+  const totalActual = obtenerTotalVotosActuales();
+  if (!votosEmitidos || votosEmitidos <= 0) {
+    return totalActual > 0 ? 100 : 0;
+  }
+  if (totalActual >= votosEmitidos) {
+    return 100;
+  }
+  const porcentaje = (totalActual / votosEmitidos) * 100;
+  return Number.isInteger(porcentaje) ? porcentaje : Number(porcentaje.toFixed(2));
+}
+
+function inicializarEstructura() {
+  partidos = {};
+  teclas = {};
+  orden = [];
+  seleccionado = null;
+
+  for (let i = 0; i < configPartidos.length; i++) {
+    const item = configPartidos[i];
+    partidos[item.nombre] = {
+      votos: item.votos || 0,
+      escanos: 0,
+      color: item.color
+    };
+    if (item.tecla) {
+      teclas[String(item.tecla).toUpperCase()] = item.nombre;
+    }
+    orden.push(item.nombre);
+  }
+
+  document.getElementById("texto-mayoria").textContent =
+    "Mayoría absoluta: " + (Math.floor(totalDiputados / 2) + 1) + " de " + totalDiputados;
+
+  const grupo = document.getElementById("asientos");
+  while (grupo.firstChild) {
+    grupo.removeChild(grupo.firstChild);
+  }
+  asientos = [];
+
+  for (let i = 0; i < totalDiputados; i++) {
+    const inicio = 180 - i * (180 / totalDiputados) - 0.8;
+    const fin = 180 - (i + 1) * (180 / totalDiputados) + 0.8;
+    const a = punto(radioExterior, inicio);
+    const b = punto(radioExterior, fin);
+    const c = punto(radioInterior, fin);
+    const d = punto(radioInterior, inicio);
+
+    const camino = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    camino.setAttribute(
+      "d",
+      "M " + a.x + " " + a.y +
+      " A " + radioExterior + " " + radioExterior + " 0 0 1 " + b.x + " " + b.y +
+      " L " + c.x + " " + c.y +
+      " A " + radioInterior + " " + radioInterior + " 0 0 0 " + d.x + " " + d.y + " Z"
+    );
+    camino.setAttribute("fill", "#dddddd");
+    camino.setAttribute("style", "transition: fill 350ms ease");
+    grupo.appendChild(camino);
+    asientos.push(camino);
+  }
+}
+
+function calcularDHondt() {
+  for (const nombre in partidos) {
+    partidos[nombre].escanos = 0;
+  }
+
+  const totalVotos = obtenerTotalVotosActuales();
+  if (totalVotos === 0) return;
+
+  for (let i = 0; i < totalDiputados; i++) {
+    let ganador = null;
+    let cocienteMayor = -1;
+
+    for (const nombre in partidos) {
+      const partido = partidos[nombre];
+      const cociente = partido.votos / (partido.escanos + 1);
+
+      if (cociente > cocienteMayor) {
+        cocienteMayor = cociente;
+        ganador = nombre;
+      }
+    }
+    if (ganador) {
+      partidos[ganador].escanos++;
+    }
+  }
+}
+
+function actualizar() {
+  calcularDHondt();
+
+  let posicion = 0;
+
+  for (const nombre of orden) {
+    for (let i = 0; i < partidos[nombre].escanos; i++) {
+      asientos[posicion].setAttribute("fill", partidos[nombre].color);
+      posicion++;
+    }
+  }
+  for (; posicion < totalDiputados; posicion++) {
+    asientos[posicion].setAttribute("fill", "#dddddd");
+  }
+
+  const etiquetas = document.getElementById("etiquetas");
+  while (etiquetas.firstChild) {
+    etiquetas.removeChild(etiquetas.firstChild);
+  }
+
+  let inicio = 0;
+
+  for (let idx = 0; idx < orden.length; idx++) {
+    const nombre = orden[idx];
+    const partido = partidos[nombre];
+    const cantidad = partido.escanos;
+
+    const puntoMedio = cantidad > 0 ? inicio + cantidad / 2 : inicio + 0.35 + (idx * 0.15);
+    const angulo = 180 - (puntoMedio / totalDiputados) * 180;
+    const radianes = angulo * Math.PI / 180;
+    const x = centroX + 180 * Math.cos(radianes);
+    const y = centroY - 180 * Math.sin(radianes);
+
+    let alineacion = "middle";
+    if (angulo > 105) alineacion = "end";
+    else if (angulo < 75) alineacion = "start";
+
+    const texto = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    texto.setAttribute("x", x);
+    texto.setAttribute("y", y);
+    texto.setAttribute("text-anchor", alineacion);
+    texto.setAttribute("font-size", "11");
+    texto.setAttribute("font-weight", "bold");
+    texto.setAttribute("fill", partido.color);
+    texto.textContent = nombre + " " + cantidad + " (" + partido.votos + " votos)";
+    etiquetas.appendChild(texto);
+
+    inicio += cantidad;
+  }
+
+  const pct = calcularPorcentajeEscrutado();
+  document.getElementById("texto-escrutado").textContent = "Escrutado: " + pct + "%";
+}
+
+function exportarJSON() {
+  const pct = calcularPorcentajeEscrutado();
+  const datosExportar = {
+    totalDiputados: totalDiputados,
+    votosEmitidos: votosEmitidos,
+    escrutado: pct,
+    partidos: configPartidos.map(function(item) {
+      return {
+        nombre: item.nombre,
+        color: item.color,
+        tecla: item.tecla,
+        votos: partidos[item.nombre].votos,
+        escanos: partidos[item.nombre].escanos
+      };
+    })
+  };
+
+  const blob = new Blob([JSON.stringify(datosExportar, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const enlace = document.createElement("a");
+  enlace.href = url;
+  enlace.download = "resultados-elecciones.json";
+  document.body.appendChild(enlace);
+  enlace.click();
+  document.body.removeChild(enlace);
+  URL.revokeObjectURL(url);
+}
+
+function pedirVotosEmitidos() {
+  while (true) {
+    const entrada = window.prompt("Introduce el número total de votos emitidos:");
+    if (entrada === null) {
+      // Si el usuario cancela el prompt, se vuelve a pedir hasta que introduzca un número válido >= 1
+      continue;
+    }
+    const numero = parseInt(entrada.trim(), 10);
+    if (!isNaN(numero) && numero > 0 && String(numero) === entrada.trim()) {
+      votosEmitidos = numero;
+      break;
+    }
+    window.alert("Por favor, introduce un número entero válido mayor que 0.");
+  }
+}
+
+function aplicarDatosJSON(datos) {
+  if (datos && Array.isArray(datos.partidos)) {
+    if (datos.totalDiputados) totalDiputados = datos.totalDiputados;
+    configPartidos = datos.partidos;
+
+    if (typeof datos.votosEmitidos === "number" && datos.votosEmitidos > 0) {
+      votosEmitidos = datos.votosEmitidos;
+    } else {
+      let suma = 0;
+      for (let i = 0; i < configPartidos.length; i++) {
+        suma += configPartidos[i].votos || 0;
+      }
+      votosEmitidos = suma;
+    }
+
+    permitirTeclado = false;
+    inicializarEstructura();
+    actualizar();
+
+    if (typeof datos.escrutado === "number") {
+      document.getElementById("texto-escrutado").textContent = "Escrutado: " + datos.escrutado + "%";
+    }
+    return true;
+  }
+  return false;
+}
+
+function iniciarModoEscritura() {
+  inicializarEstructura();
+  actualizar();
+  setTimeout(function() {
+    pedirVotosEmitidos();
+    permitirTeclado = true;
+    actualizar();
+  }, 50);
+}
+
+window.addEventListener("keydown", function(evento) {
+  if (!permitirTeclado) return;
+
+  const teclaPulsada = evento.key.toUpperCase();
+
+  if (teclaPulsada.length === 1 && /[A-Z]/.test(teclaPulsada)) {
+    historialTeclas = (historialTeclas + teclaPulsada).slice(-3);
+    if (historialTeclas === "EXP") {
+      historialTeclas = "";
+      exportarJSON();
+      return;
+    }
+  }
+
+  if (teclas[teclaPulsada]) {
+    seleccionado = teclas[teclaPulsada];
+    return;
+  }
+
+  if (evento.key === "+" || evento.key === "=" || evento.key === "Add") {
+    modificarVoto(1);
+  } else if (evento.key === "-" || evento.key === "Subtract") {
+    modificarVoto(-1);
+  }
+});
+
+function modificarVoto(cantidad) {
+  if (!permitirTeclado || seleccionado === null) return;
+
+  const partido = partidos[seleccionado];
+  if (cantidad < 0 && partido.votos === 0) return;
+
+  // Si se intenta sumar un voto y ya se alcanzó el total de votos emitidos (100%), no deja añadir más
+  if (cantidad > 0 && votosEmitidos > 0 && obtenerTotalVotosActuales() >= votosEmitidos) {
+    return;
+  }
+
+  partido.votos += cantidad;
+  actualizar();
+}
+
+// Permite arrastrar y soltar resultados-elecciones.json en local
+window.addEventListener("dragover", function(e) {
+  e.preventDefault();
+});
+
+window.addEventListener("drop", function(e) {
+  e.preventDefault();
+  if (!e.dataTransfer || !e.dataTransfer.files || !e.dataTransfer.files.length) return;
+  const archivo = e.dataTransfer.files[0];
+  const lector = new FileReader();
+  lector.onload = function(ev) {
+    try {
+      const datos = JSON.parse(ev.target.result);
+      aplicarDatosJSON(datos);
+    } catch (err) {}
+  };
+  lector.readAsText(archivo);
+});
+
+// 1. Comprueba primero si existe "resultados-elecciones.json" antes de pedir el prompt
+fetch("resultados-elecciones.json?t=" + Date.now(), { cache: "no-store" })
+  .then(function(respuesta) {
+    if (!respuesta.ok) throw new Error("No encontrado");
+    return respuesta.json();
+  })
+  .then(function(datos) {
+    if (!aplicarDatosJSON(datos)) {
+      iniciarModoEscritura();
+    }
+  })
+  .catch(function() {
+    iniciarModoEscritura();
+  });
+</script>
+
+</body>
+</html>

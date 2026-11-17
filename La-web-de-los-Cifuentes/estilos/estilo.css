@@ -1,0 +1,738 @@
+@import url('https://fonts.googleapis.com/css2?family=Isometra&family=Original+Surfer&family=Playwrite+AR:wght@100..400&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Yarndings+12&display=swap');
+
+html
+{background-color:#b8e8ff;}
+#webver
+{
+    font-family: verdana;
+    color: rgb(4, 23, 51);
+    text-align:right
+}
+#boton-app
+{
+    display: none;
+}
+#boton-menu
+{
+    display: none;
+}
+#marquesina
+{
+    font-family: "Orbitron", sans-serif;
+    color: white;
+    font-size: 40px;
+    font-weight: 600;
+    background-color: rgb(4, 23, 51);
+}
+#marquesina:hover
+{
+    background-color: #5297ff;
+}
+h1
+{
+    color:rgb(4, 23, 51);
+    font-family: "Isometra", serif;
+    font-weight: 400; 
+    font-style: normal;
+    font-size:50px;
+}
+.foto1
+{
+    height:400px;
+    border: solid 5px #26426d;
+    border-radius: 29px;
+    margin: 0 auto;
+    display: block;
+}
+#fotozoom:hover
+ {
+    border: solid #5297ff 7px;
+ }
+.foto2
+{
+    height:200px;
+    border: solid 5px #26426d;
+    border-radius: 29px;
+    margin: 0 auto;
+    display: block;
+    background-color: rgb(253, 250, 247);
+}
+hr
+{
+    border: 2px solid rgb(38, 66, 109);
+}
+a
+{
+    text-decoration: none;
+}
+.boton, input[type="button"]
+{
+    background-color:rgb(4, 23, 51);
+    color:#b8e8ff;
+     font-family: "Roboto Condensed", sans-serif;
+    font-family: "Original Surfer", sans-serif;
+    font-weight: 600;
+  font-style: normal;
+    border-radius: 8px;
+    font-size: 23px;
+    border-color:#b8e8ff;
+}
+.boton-centro
+{
+    background-color:rgb(4, 23, 51);
+    color:#b8e8ff;
+     font-family: "Roboto Condensed", sans-serif;
+    font-family: "Original Surfer", sans-serif;
+    font-weight: 600;
+  font-style: normal;
+    border-radius: 8px;
+    font-size: 23px;
+    border-color:#b8e8ff;
+    text-align: center;
+    display: block;
+    margin: auto;
+}
+.cabecera
+{
+    color:rgb(4, 23, 51);
+    font-size:30px;
+    border-radius: 8px;
+    font-family: "Isometra", serif;
+    font-weight: 400;
+    font-style: normal;
+    border-color:rgb(157, 219, 229);
+    text-align:center;
+}
+.cabeceraizq
+{
+    color:rgb(4, 23, 51);
+    font-size:30px;
+    border-radius: 8px;
+    font-family: "Isometra", serif;
+    font-weight: 400;
+    font-style: normal;
+    border-color:rgb(157, 219, 229);
+    text-align:left;
+}
+.eslogan
+{
+    color:rgb(4, 23, 51);
+    font-size:25px;
+  font-family: "Original Surfer", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+    text-align:center;
+    width: 36%;
+    margin: auto;
+    margin-bottom: 15px;
+}
+.definicion
+{
+    color:rgb(38, 66, 109);
+    font-size:24px;
+  font-family: "Original Surfer", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+    text-align:left;
+}
+.poemas
+{
+text-align:center;
+  font-family: "Playwrite AR", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  color:rgb(4, 23, 51);
+}
+input[type="text"], input[type="number"]
+{
+    color:rgb(38, 66, 109);
+     font-family: "Roboto Condensed", sans-serif;
+  font-family: "Original Surfer", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+    border-radius: 8px;
+    font-size: 23px;
+    border-color:rgb(4, 23, 51);
+}
+.seccion-central {
+    padding: 50px 20px;
+    background-size: cover;       
+    background-position: center;   
+    background-repeat: no-repeat;
+    background-image: linear-gradient(rgba(230, 242, 255, 0.55), rgba(230, 242, 255, 0.55)), url('../imagenes/fondo.jpg'); 
+}
+
+.formulario
+{   
+    margin: 0 auto;
+    display: block;
+}
+.video, #calendario
+{
+    border: solid 5px #26426d;
+    border-radius: 30px;
+    margin: 0 auto;
+    display: block;
+}
+.deco
+{
+font-family: "Yarndings 12", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size:40px;
+  margin: auto;
+  display:block;
+  text-align: center;
+  color:rgb(4, 23, 51);
+}
+#diccionario
+{
+    border: solid 10px #3b2205;
+    margin: 0 auto;
+    display: block;
+    width: 50%;
+    height: 760px;
+    background-color: rgb(231, 217, 199);
+}
+#topsecret:hover
+{
+    font-size: 45px;
+}
+#btnsecreto
+{
+    background-color:rgb(4, 23, 51);
+    color:#00ff40;
+     font-family: "Roboto Condensed", sans-serif;
+    font-family: "Original Surfer", sans-serif;
+    font-weight: 600;
+  font-style: normal;
+    border-radius: 8px;
+    font-size: 23px;
+    border-color:#b8e8ff;
+    text-align:center;
+    display:block;
+    margin: auto;
+}
+#adminpanel
+{
+    background-color: rgb(4, 23, 51);
+    padding: 10px;
+    color: rgb(229, 142, 255);
+}
+.botonadmin
+{
+    background-color:rgb(0, 0, 0);
+     font-family: "Roboto Condensed", sans-serif;
+    font-family: "Original Surfer", sans-serif;
+    font-weight: 600;
+  font-style: normal;
+    border-radius: 8px;
+    font-size: 20px;
+    border-color:rgb(229, 142, 255);
+    color: rgb(229, 142, 255);
+}
+#textadmin
+{
+    text-align: right;
+    float: right;
+    font-size: 23px;
+    margin: 10px;
+         font-family: "Roboto Condensed", sans-serif;
+    font-family: "Original Surfer", sans-serif;
+    font-weight: 600;
+  font-style: normal;
+}
+#foto-de-perfil
+{
+    width: 85px;
+    height: 85px;
+    border-radius: 100%;
+    float: right;
+    border: solid rgb(4, 23, 51);
+    padding: 2px;
+}
+#foto-de-perfil:hover
+{
+    padding: 4px;
+}
+#nombre-de-perfil
+{
+        color:rgb(4, 23, 51);
+    font-size: 27px;
+  font-family: "Original Surfer", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+    text-align:right;
+    margin-bottom: 15px;
+    float: left;
+    margin-right: 15px;
+}
+#perfil-top
+{
+    float: right;
+    margin-right: 13px;
+}
+#foto-de-perfil-page {
+    width: 28%;
+    height: auto;
+    border: solid rgb(4, 23, 51) 4px;
+    padding: 2px;
+    display: block;
+    flex-shrink: 0;
+    margin-left: 2.65%;
+}
+#biografia-page {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    overflow-wrap: anywhere;
+    word-break: normal;
+    font-size: 23px;
+    color: black;
+    font-family: "Original Surfer", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+#nombre-de-perfil-page
+{
+        color:rgb(4, 23, 51);
+    font-size: 50px;
+  font-family: "Original Surfer", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+    text-align:center;
+    margin-left: 5%;
+    margin-top: 4%;
+    display: inline;
+}
+#perfil-page
+{
+    width: 30%;
+    padding-top: 2%;
+    margin: auto;
+    border: solid 2px rgb(49, 71, 7);
+    border-radius: 30px;
+    background-image: url('../recursos/fondos/dni.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 350px;
+    height: auto;
+    box-sizing: border-box;
+}
+#contenido-perfil-page {
+    display: flex;
+    align-items: flex-start;
+    gap: 3%;
+    width: 94%;
+    margin-left: 3%;
+    margin-top: 2%;
+}
+#numerin
+{
+    margin-left: 3%;
+    margin-top: 7%;
+    font-size: 110%;
+}
+.botones-perfil
+{
+    width: 290px;
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+    text-align: center;
+    border: solid 3px rgb(4, 23, 51);
+    border-radius: 20px;
+    padding: 10px;
+}
+select
+{
+    background-color: rgb(4, 23, 51);
+    color:#b8e8ff;
+    font-family: "Isometra", serif;
+    font-weight: 100; 
+    font-style: normal;
+    font-size: 20px;
+    padding: 0.5%;
+    border-radius: 10px;
+}
+#zamatest
+{
+    padding: 1%;
+    margin: 25%;
+    border: solid;
+    margin-top:0%;
+}
+
+/* CHATGPT: El separador del perfil no altera el encabezado de escritorio. */
+.perfil-separador-responsive
+{
+display: none; 
+}
+input[type="submit"]
+{
+    background-color: rgb(4, 23, 51);
+    color:#4dff00;
+    font-family: "Isometra", serif;
+    font-weight: 100; 
+    font-style: normal;
+    font-size: 20px;
+    padding: 1%;
+    border-radius: 10px;
+}
+#tarjeta-zamarro
+{
+    border: solid 5px rgb(128, 83, 126);
+    display: block;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 3%;
+    background-color: rgb(255, 228, 254);
+}
+
+
+/* CHATGPT: Ajustes responsive generales. Solo se activan en pantallas de hasta 768 px; los estilos de escritorio originales se mantienen. */
+@media screen and (max-width: 768px) {
+    /* CHATGPT: Evita desbordamientos laterales y adapta el espacio general al ancho del teléfono. */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { max-width: 100%; overflow-x: hidden; }
+    body { margin: 0; padding: 12px; }
+
+    /* CHATGPT: Escala los títulos sin cambiar su tipografía ni su identidad visual. */
+    h1 { font-size: clamp(1.75rem, 7vw, 2.35rem); overflow-wrap: anywhere; }
+    .cabecera, .cabeceraizq { font-size: clamp(1.25rem, 5vw, 1.7rem); overflow-wrap: anywhere; }
+    #boton-menu
+    {
+    display: inline;
+    }
+    #menu-opt
+    {
+        display: none;
+    }
+    /* CHATGPT: Hace que las imágenes mantengan su proporción y no superen la pantalla. */
+    img { max-width: 100%; height: auto; }
+    .foto1 {
+        width: min(100%, 520px);
+        height: auto;
+        max-height: 65vh;
+        object-fit: contain;
+        border-width: 3px;
+        border-radius: 18px;
+    }
+    .foto2 {
+        width: auto;
+        height: auto;
+        max-width: min(100%, 420px);
+        max-height: 200px;
+        object-fit: contain;
+        border-width: 3px;
+        border-radius: 18px;
+    }
+
+    /* CHATGPT: Reduce las medidas fijas de texto y permite que los botones se ajusten en varias líneas. */
+    .eslogan {
+        width: 100%;
+        max-width: 620px;
+        padding: 0 4px;
+        font-size: clamp(1.05rem, 4.2vw, 1.35rem);
+        overflow-wrap: anywhere;
+    }
+    .definicion { font-size: clamp(1.05rem, 4.2vw, 1.35rem); }
+    .boton, input[type="button"], button, .boton-centro {
+        max-width: 100%;
+        min-height: 44px;
+        font-size: clamp(1.2rem, 4vw, 1.25rem);
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+    input[type="text"] , input[type="number"]
+    {
+        width: 20%;
+        max-width: 480px;
+        min-height: 44px;
+        padding: 9px 10px;
+        font-size: 16px;
+    }
+
+    /* CHATGPT: Compacta la sección central sin eliminar el fondo ni modificar su composición. */
+    .seccion-central { padding: 28px 12px; }
+    .deco {
+        width: 100%;
+        max-width: 100%;
+        font-size: clamp(1.9rem, 8.5vw, 2.6rem);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: clip;
+        direction: ltr;
+        text-align: center;
+    }
+    #marquesina
+    {
+        font-size: clamp(1.5rem, 4.2vw, 2rem);
+    }
+    #webver { font-size: 1rem; text-align: center; overflow-wrap: anywhere; }
+
+    /* CHATGPT: Conserva la proporción del reproductor y lo limita al ancho disponible. */
+    .video {
+        display: block;
+        width: min(100%, 560px);
+        height: min(calc(56.25vw - 13.5px), 315px);
+        min-height: 160px;
+        margin: 0 auto;
+        border-width: 3px;
+        border-radius: 18px;
+    }
+    #calendario
+    {
+        border: solid 5px #26426d;
+        display: block;
+        width: min(100%, 560px);
+        min-height: 160px;
+        margin: 0 auto;
+        border-width: 3px;
+        border-radius: 18px;
+    }
+    .poemas {
+        max-width: 100%;
+        padding: 0 4px;
+        font-size: clamp(0.78rem, 3.2vw, 0.95rem);
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+    }
+
+    /* CHATGPT: Reordena el diccionario en una columna para que sus dos paneles sean utilizables en móvil. */
+    #diccionario {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        padding: 8px;
+        border-width: 5px;
+    }
+    #diccionario iframe {
+        display: block;
+        float: none !important;
+        width: 100% !important;
+        height: 52vh !important;
+        min-height: 500px;
+        max-height: 700px;
+        max-width: 100%;
+        border: 0;
+    }
+
+    /* CHATGPT: Muestra una línea entre el título del sitio y el perfil solo cuando se activa el diseño móvil. */
+    #perfil-top .perfil-separador-responsive {
+        display: block;
+        width: 100%;
+        margin: 5px auto 9px;
+        border: 2px solid rgb(38, 66, 109);
+        border-top: 2px solid rgb(38, 66, 109);
+    }
+
+    /* CHATGPT: Mantiene el bloque del perfil centrado y reserva una disposición estable para nombre y fotografía. */
+    #perfil-top {
+        float: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        width: 100%;
+        margin: 8px auto;
+    }
+    /* CHATGPT: El enlace también usa una columna de ancho completo para que el nombre no pueda empujar lateralmente la fotografía. */
+    #perfil-top > a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 4px;
+        width: 100%;
+        max-width: 100%;
+    }
+    /* CHATGPT: Mantiene el nombre en una sola línea y reserva siempre el mismo alto; los nombres excepcionalmente largos muestran puntos suspensivos en móvil. */
+    /* CHATGPT: Aumenta un poco el nombre del perfil en móvil; para deshacerlo, restaurar clamp(0.9rem, 4.5vw, 1.5rem). */
+    #nombre-de-perfil {
+        display: block;
+        float: none;
+        width: 100%;
+        max-width: 100%;
+        min-height: 1.2em;
+        margin: 0;
+        padding: 0 4px;
+        box-sizing: border-box;
+        font-size: clamp(1rem, 5vw, 1.6rem);
+        line-height: 1.2;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    /* CHATGPT: Aumenta ligeramente el perfil en móvil. Si se quiere volver al tamaño anterior, cambiar 72px por 64px en estas cinco propiedades. */
+    #foto-de-perfil {
+        display: block;
+        float: none;
+        flex: 0 0 78px;
+        width: 78px;
+        min-width: 78px;
+        height: 78px;
+        min-height: 78px;
+        margin: 0;
+        padding: 2px;
+        object-fit: cover;
+    }
+    #perfil-page { width: 100%; }
+    #nombre-de-perfil-page {
+        margin: 0 0 12px;
+        font-size: clamp(1.7rem, 7vw, 2.5rem);
+        overflow-wrap: anywhere;
+    }
+    #foto-de-perfil-page {
+        width: min(68vw, 280px);
+        height: auto;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+    }
+    #boton-menu
+    {
+        padding-left: 2.5%;
+        padding-right: 2.5%;
+    }
+
+
+    #textadmin { display: none !important; }
+    .botonadmin { font-size: clamp(0.3rem, 3vw, 0.75rem);}
+    #adminpanel { max-width: 100%; overflow-wrap: anywhere; }
+    .botones-perfil { max-width: 100%; }
+    .botones-perfil .eslogan { width: 100%; }
+
+    /* CHATGPT: Evita que formularios e iframes externos generen desplazamiento horizontal. */
+    form { max-width: 100%; }
+    .formulario { width: 100%; max-width: 100%; }
+    iframe { max-width: 100%; }
+}
+
+/* ======================================================
+   CERTIFICADO DIGITAL EN MÓVIL
+   Conserva la composición horizontal de escritorio.
+   Solo reduce proporcionalmente medidas y espacios.
+   ====================================================== */
+@media screen and (max-width: 768px) {
+    #perfil-page {
+        width: 100%;
+        max-width: 100%;
+        min-height: 0;
+        height: auto;
+        aspect-ratio: 1.91 / 1;
+        padding-top: 2%;
+        padding-bottom: 2%;
+        margin-left: auto;
+        margin-right: auto;
+        box-sizing: border-box;
+        background-attachment: scroll;
+        border-radius: 17px;
+    }
+
+    /* El nombre sigue arriba, como en el DNI de escritorio. */
+    #nombre-de-perfil-page {
+        display: block;
+        width: auto;
+        margin-left: 5%;
+        margin-top: 2%;
+        margin-bottom: 0;
+        font-size: clamp(21px, 6.2vw, 42px);
+        line-height: 1.05;
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: clip;
+    }
+
+    /* Foto y biografía permanecen una al lado de la otra. */
+    #contenido-perfil-page {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 3%;
+        width: 94%;
+        margin-left: 3%;
+        margin-top: 2%;
+
+    }
+
+    #foto-de-perfil-page {
+        display: block;
+        flex: 0 0 28%;
+        width: 28%;
+        max-width: 28%;
+        height: auto;
+        aspect-ratio: auto;
+        object-fit: contain;
+        margin-left: 0;
+        box-sizing: border-box;
+        border: solid 3px;
+    }
+
+    #biografia-page {
+        flex: 1 1 0;
+        min-width: 0;
+        width: auto;
+        margin: 0;
+        float: none;
+        font-size: clamp(16px, 5vw, 24px);
+        font-weight: 400;
+        line-height: 1.2;
+        text-align: left;
+        overflow-wrap: anywhere;
+        word-break: normal;
+    }
+
+    /* El identificador continúa abajo, alineado con el borde izquierdo. */
+    #numerin {
+        width: auto;
+        max-width: 94%;
+        margin-left: 3%;
+        margin-top: 6%;
+        margin-bottom: 0;
+        font-size: clamp(10px, 3vw, 16px);
+        line-height: 1.15;
+        text-align: left;
+        overflow-wrap: anywhere;
+    }
+    #zamatest
+    {
+        padding: 2%;
+        margin: 5%;
+        border: solid 3px;
+        margin-top:0%;
+    }
+    select
+    {
+        background-color: rgb(4, 23, 51);
+        color:#b8e8ff;
+        font-family: "Isometra", serif;
+        font-weight: 100; 
+        font-style: normal;
+        font-size: 17.5px;
+        padding: 0.2%;
+        border-radius: 10px;
+    }
+    #tarjeta-zamarro
+    {
+    border: solid 3px rgb(128, 83, 126);
+    display: block;
+    margin-left: 1.8%;
+    margin-right: 1.8%;
+    padding: 3.5%;
+    background-color: rgb(255, 228, 254);
+    }
+    #boton-app
+    {
+    display: inline;
+    }
+}
